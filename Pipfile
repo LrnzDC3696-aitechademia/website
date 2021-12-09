@@ -13,8 +13,12 @@ email-validator = "*"
 flask-sqlalchemy = "*"
 flask-bcrypt = "*"
 flask-login = "*"
+pillow = "*"
 
 [dev-packages]
+flake8 = "*"
+black = "*"
+isort = "*"
 
 [requires]
 python_version = "3.10"
