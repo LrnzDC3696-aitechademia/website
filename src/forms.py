@@ -1,22 +1,24 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms import BooleanField, PasswordField, StringField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+
 from src.models import User
 
-class RegistrationForms(FlaskForm):
-    username = StringField('Username',
-            validators=[DataRequired(), Length(min=3, max=30)])
 
-    email = StringField('Email',
-            validators=[DataRequired(), Email()])
+class RegistrationForm(FlaskForm):
+    username = StringField(
+        "Username", validators=[DataRequired(), Length(min=3, max=30)]
+    )
 
-    password = PasswordField('Password',
-            validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
 
-    confirm_password = PasswordField('Confirm Password',
-            validators=[DataRequired(), EqualTo('password')])
+    password = PasswordField("Password", validators=[DataRequired()])
 
-    submit = SubmitField('Sign Up')
+    confirm_password = PasswordField(
+        "Confirm Password", validators=[DataRequired(), EqualTo("password")]
+    )
+
+    submit = SubmitField("Sign Up")
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
@@ -24,7 +26,7 @@ class RegistrationForms(FlaskForm):
         if user is None:
             return
 
-        raise ValidationError('Username is taken. Please thing for another one')
+        raise ValidationError("Username is taken. Please take another one")
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
@@ -32,13 +34,11 @@ class RegistrationForms(FlaskForm):
         if user is None:
             return
 
-        raise ValidationError('Email is taken. No alts allowed')
+        raise ValidationError("Email is taken. No alts allowed")
 
-class LoginForms(FlaskForm):
-    email = StringField('Email',
-            validators=[DataRequired(), Email()])
-    password = PasswordField('Password',
-            validators=[DataRequired()])
-    remember = BooleanField('Remember Me')
-    submit = SubmitField('Login')
 
+class LoginForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    remember = BooleanField("Remember Me")
+    submit = SubmitField("Login")
