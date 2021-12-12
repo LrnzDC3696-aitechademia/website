@@ -74,6 +74,7 @@ def save_picture(form_picture):
 
     OUTPUT_SIZE = (125, 125)
     i = Image.open(form_picture)
+    i.convert('RGB')
     i.thumbnail(OUTPUT_SIZE)
     i.save(picture_path)
 
@@ -81,6 +82,8 @@ def save_picture(form_picture):
 
 
 def delete_picture(picture_fn):
+    if picture_fn == 'default.jpeg':
+        return
     picture_path = os.path.join(app.root_path, "static/profile_pics", picture_fn)
     os.remove(picture_path)
 
