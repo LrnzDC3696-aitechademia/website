@@ -1,7 +1,7 @@
 # Todo
 
-- [ ] Just follow the tutorial
-- [ ] Put on python anywhere
+- [x] Just follow the tutorial
+- [x] Put on python anywhere
 - [ ] Add custom domain name
 - [ ] Add testing
 - [ ] Add github workflow
