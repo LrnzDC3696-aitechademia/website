@@ -1,18 +1,34 @@
-import os
-
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URI")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = "login"
-login_manager.login_message_category = "info"
+from src.config import Config
 
-from src import routes
+db = SQLAlchemy()
+bcrypt = Bcrypt()
+login_manager = LoginManager()
+login_manager.login_view = "users.login"
+login_manager.login_message_category = "info"
+mail = Mail()
+
+
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(Config)
+
+    objects = (db, bcrypt, login_manager, mail)
+    for obj in objects:
+        obj.init_app(app)
+
+    from src.users.routes import users
+    from src.posts.routes import posts
+    from src.main.routes import main
+    from src.errors.handlers import errors
+
+    blueprints = (users, posts, main, errors)
+    for blueprint in blueprints:
+        app.register_blueprint(blueprint)
+
+    return app
