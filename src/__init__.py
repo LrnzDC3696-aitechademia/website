@@ -18,14 +18,17 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    for obj in (db, bcrypt, login_manager, mail):
+    objects = (db, bcrypt, login_manager, mail)
+    for obj in objects:
         obj.init_app(app)
 
     from src.users.routes import users
     from src.posts.routes import posts
     from src.main.routes import main
+    from src.errors.handlers import errors
 
-    for blueprint in (users, posts, main):
+    blueprints = (users, posts, main, errors)
+    for blueprint in blueprints:
         app.register_blueprint(blueprint)
 
     return app
