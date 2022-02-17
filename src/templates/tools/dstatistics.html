@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Descriptive statistics</h1>
+  <p>{{ tool.description }}</p>
+  <hr>
+  <div class="content-section">
+    <form action="" method="POST">
+      {{ form.hidden_tag() }}
+      <fieldset class='form-group'>
+        <legend class="border-bottom mb-4">Descriptive Statistics</legend>
+        <div class="form-group">
+          {{ form.dataset.label(class="form-control-label") }}
+          {% if form.dataset.errors %}
+            {{ form.dataset(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.dataset.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.dataset(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+      </fieldset>
+      <div class="form-group">
+        {{ form.submit(class='btn btn-outline-info') }}
+      </div>
+    </form>
+  </div>
+  {% if result %}
+    <hr>
+    <div class="content-section">
+      <h2>Result</h2>
+      <p>Mean: {{result.mean}}</p>
+      <p>Median: {{result.median}}</p>
+      <p>Mode: {{result.mode}}</p>
+      <p>Range: {{result.range}}</p>
+      <p>Standard Deviation: {{result.standard_deviation}}</p>
+    </div>
+  {% endif %}
+{% endblock content %}

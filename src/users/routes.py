@@ -1,7 +1,8 @@
-from flask import flash, redirect, render_template, request, url_for, Blueprint
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
 from src import bcrypt, db
+from src.models import Post, User
 from src.users.forms import (
     LoginForm,
     RegistrationForm,
@@ -9,9 +10,7 @@ from src.users.forms import (
     ResetPasswordForm,
     UpdateAccountForm,
 )
-
-from src.models import Post, User
-from src.users.utils import send_reset_email, delete_picture, save_picture
+from src.users.utils import delete_picture, save_picture, send_reset_email
 
 users = Blueprint("users", __name__)
 

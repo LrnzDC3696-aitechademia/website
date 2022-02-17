@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  {% for tool in tools %}
+    <a href="{{ tool.url }}">
+      <article class="media content-section">
+        <div class="media-body">
+          <h2>{{ tool.name }}</h2>
+          <p class="article-content">{{ tool.description }}</p>
+        </div>
+      </article>
+    </a>
+  {% endfor %}
+{% endblock content %}

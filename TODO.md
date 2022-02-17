@@ -1,7 +1,9 @@
 # Todo
 
-- [x] Just follow the tutorial
-- [x] Put on python anywhere
+- [ ] tools
+  - [ ] trying to change the form index
+  - [ ] trying to make index view
+  - [ ] add backend
 - [ ] Add custom domain name
 - [ ] Add testing
 - [ ] Add github workflow

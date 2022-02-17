@@ -15,6 +15,9 @@ flask-bcrypt = "*"
 flask-login = "*"
 pillow = "*"
 flask-mail = "*"
+flask-admin = "*"
+python-dotenv = "*"
+flask-migrate = "*"
 
 [dev-packages]
 flake8 = "*"

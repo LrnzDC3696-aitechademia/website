@@ -10,3 +10,6 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ["EMAIL_USER"]
     MAIL_PASSWORD = os.environ["EMAIL_PASS"]
+    MAIN_ADMIN_EMAIL = os.environ["MAIN_ADMIN_EMAIL"]
+    MAIN_ADMIN_PASSWORD = os.environ["MAIN_ADMIN_PASSWORD"]
+    MAIN_ADMIN_USERNAME = os.environ["MAIN_ADMIN_USERNAME"]
