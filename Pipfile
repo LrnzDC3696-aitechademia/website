@@ -5,9 +5,6 @@ name = "pypi"
 
 [packages]
 flask = "*"
-flask-socketio = "==4.3.1"
-python-socketio = "==4.6.0"
-python-engineio = "==3.13.2"
 flask-wtf = "*"
 email-validator = "*"
 flask-sqlalchemy = "*"
@@ -23,6 +20,3 @@ flask-migrate = "*"
 flake8 = "*"
 black = "*"
 isort = "*"
-
-[requires]
-python_version = "3.10"
