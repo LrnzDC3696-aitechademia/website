@@ -1,5 +1,5 @@
 import statistics
-from scipy import skew as skew_, kurtosis as kurtosis_
+import pandas as pd
 
 from flask import Blueprint, render_template, url_for
 from flask_wtf import FlaskForm
@@ -49,12 +49,12 @@ class DescriptiveStatistic:
     @property
     def skewness(self):
         """ Calculate skewness of the dataset """
-        return skew_(self.dataset)
+        return pd.DataFrame(self.dataset).skew()[0]
 
     @property
     def kurtosis(self):
         """ Calculate kurtosis of the dataset """
-        return kurtosis_(self.dataset)
+        return pd.DataFrame(self.dataset).kurtosis()[0]
 
 
 class DSForm(FlaskForm):
